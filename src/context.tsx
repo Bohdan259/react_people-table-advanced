@@ -75,8 +75,8 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const name = person.name.toLowerCase();
-    const motherName = person.mother?.name.toLowerCase() || '';
-    const fatherName = person.father?.name.toLowerCase() || '';
+    const motherName = person.motherName?.toLowerCase() || '';
+    const fatherName = person.fatherName?.toLowerCase() || '';
     const quer = query.toLowerCase().trim();
 
     return (
