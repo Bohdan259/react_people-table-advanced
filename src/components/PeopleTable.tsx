@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Person, SortField } from '../types';
 import { PersonLink } from './Person';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getSearchWith, SearchParams } from '../utils/searchHelper';
 
 type Props = {
@@ -26,16 +26,15 @@ export const PeopleTable: FC<Props> = ({ people }) => {
 
     if (sort !== field) {
       setSearchWith({ sort: field });
-    } else {
+    } else if (order !== 'desc') {
       setSearchWith({ order: 'desc' });
-      if (order === 'desc') {
-        setSearchWith({ order: null, sort: null });
-      }
+    } else {
+      setSearchWith({ order: null, sort: null });
     }
   };
 
   function iconSort(field: SortField) {
-    if (sort == field && order === 'desc') {
+    if (sort === field && order === 'desc') {
       return 'fas fa-sort-down';
     }
 
@@ -56,56 +55,48 @@ export const PeopleTable: FC<Props> = ({ people }) => {
           <th>
             <span className="is-flex is-flex-wrap-nowrap">
               Name
-              <Link to="#">
-                <span className="icon">
-                  <i
-                    className={iconSort('name')}
-                    onClick={e => handleSort(e, 'name')}
-                  />
-                </span>
-              </Link>
+              <span className="icon">
+                <i
+                  className={iconSort('name')}
+                  onClick={e => handleSort(e, 'name')}
+                />
+              </span>
             </span>
           </th>
 
           <th>
             <span className="is-flex is-flex-wrap-nowrap">
               Sex
-              <Link to="#">
-                <span className="icon">
-                  <i
-                    className={iconSort('sex')}
-                    onClick={e => handleSort(e, 'sex')}
-                  />
-                </span>
-              </Link>
+              <span className="icon">
+                <i
+                  className={iconSort('sex')}
+                  onClick={e => handleSort(e, 'sex')}
+                />
+              </span>
             </span>
           </th>
 
           <th>
             <span className="is-flex is-flex-wrap-nowrap">
               Born
-              <Link to="#">
-                <span className="icon">
-                  <i
-                    className={iconSort('born')}
-                    onClick={e => handleSort(e, 'born')}
-                  />
-                </span>
-              </Link>
+              <span className="icon">
+                <i
+                  className={iconSort('born')}
+                  onClick={e => handleSort(e, 'born')}
+                />
+              </span>
             </span>
           </th>
 
           <th>
             <span className="is-flex is-flex-wrap-nowrap">
               Died
-              <Link to="#">
-                <span className="icon">
-                  <i
-                    className={iconSort('died')}
-                    onClick={e => handleSort(e, 'died')}
-                  />
-                </span>
-              </Link>
+              <span className="icon">
+                <i
+                  className={iconSort('died')}
+                  onClick={e => handleSort(e, 'died')}
+                />
+              </span>
             </span>
           </th>
 

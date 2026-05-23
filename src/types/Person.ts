@@ -14,6 +14,4 @@ export type FiltersSex = 'All' | 'Male' | 'Female';
 
 export type SortField = 'name' | 'sex' | 'born' | 'died';
 
-export type SortOrder = 'asc' | 'desc' | 'original';
-
 export type FilterCenturies = '16' | '17' | '18' | '19' | '20';

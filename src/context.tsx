@@ -6,7 +6,7 @@ import {
   createContext,
   useMemo,
 } from 'react';
-import { Person, SortField, SortOrder } from './types';
+import { Person, SortField } from './types';
 import { useSearchParams } from 'react-router-dom';
 
 export const PeopleContext = createContext<{
@@ -15,21 +15,6 @@ export const PeopleContext = createContext<{
 }>({
   people: [],
   setPeople: () => {},
-});
-
-export const SortFieldContext = createContext<{
-  sortField: SortField | null;
-  setSortField: Dispatch<SetStateAction<SortField | null>>;
-}>({
-  sortField: 'name',
-  setSortField: () => {},
-});
-export const SortOrderContext = createContext<{
-  sortOrder: SortOrder;
-  setSortOrder: Dispatch<SetStateAction<SortOrder>>;
-}>({
-  sortOrder: 'original',
-  setSortOrder: () => {},
 });
 
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
@@ -90,9 +75,15 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const name = person.name.toLowerCase();
+    const motherName = person.mother?.name.toLowerCase() || '';
+    const fatherName = person.father?.name.toLowerCase() || '';
     const quer = query.toLowerCase().trim();
 
-    return name.includes(quer);
+    return (
+      name.includes(quer) ||
+      motherName.includes(quer) ||
+      fatherName.includes(quer)
+    );
   });
 
   const filterCenturies = useMemo<Person[]>(() => {

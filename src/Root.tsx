@@ -9,7 +9,6 @@ import { HomePage } from './components/HomePage';
 import { PeoplePage } from './components/PeoplePage';
 import { PageNotFound } from './components/PageNotFound';
 import { GlobalProvider } from './context';
-import { PeopleFilters } from './components/PeopleFilters';
 
 export const Root = () => (
   <Router>
@@ -21,7 +20,6 @@ export const Root = () => (
           <Route path="people">
             <Route index element={<PeoplePage />} />
             <Route path=":slug" element={<PeoplePage />} />
-            <Route path="filter" element={<PeopleFilters />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Route>

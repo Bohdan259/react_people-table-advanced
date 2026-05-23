@@ -17,15 +17,21 @@ export const PeoplePage = () => {
   useEffect(() => {
     setLoader(true);
     getPeople()
-      .then(arrPeople => setPeople(arrPeople))
+      .then(arrPeople => {
+        if (arrPeople.length === 0) {
+          setNoPeopleOnServer(true);
+        }
+
+        setPeople(arrPeople);
+      })
       .catch(() => {
         setErrorPeople(true);
       })
       .finally(() => {
         setLoader(false);
-        if (people.length === 0) {
-          setNoPeopleOnServer(true);
-        }
+        setTimeout(() => {
+          setErrorPeople(false);
+        }, 3000);
       });
   }, []);
 
